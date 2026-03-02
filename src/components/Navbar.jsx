@@ -40,7 +40,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500
+      className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-500
         ${visible ? "translate-y-0" : "-translate-y-full"}
         ${scrolled
           ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-[#D4AF37]/40"
@@ -97,46 +97,52 @@ export default function Navbar() {
                 </button>
               </SheetTrigger>
 
-              <SheetContent side="right" className="w-[280px] sm:w-[320px] p-0">
-                <div className="flex flex-col h-full">
+              <SheetContent
+                side="right"
+                className="w-full sm:w-[340px] p-0 bg-white border-l border-[#E8E6E0] z-[100]"
+              >
+                <div className="flex flex-col h-full bg-white">
                   {/* Sheet Header */}
-                  <div className="flex items-center justify-between px-5 py-4 border-b border-[#E8E6E0]">
-                    <div className="flex items-center gap-2">
-                      <Scale size={18} className="text-[#D4AF37]" />
-                      <span className="font-bold text-[#2C2C2C] text-sm">
+                  <div className="flex items-center justify-between px-6 py-5 border-b border-[#E8E6E0] bg-white">
+                    <Link href="/" className="flex items-center gap-2" onClick={() => setOpen(false)}>
+                      <Scale size={20} className="text-[#D4AF37]" />
+                      <span className="font-bold text-[#2C2C2C] text-base">
                         <span className="text-[#D4AF37]">TANZRAY</span> LEGAL
                       </span>
-                    </div>
+                    </Link>
                     <SheetClose asChild>
-                      <button className="p-1.5 rounded-md text-[#5A5A5A] hover:bg-[#FAF9F7]">
-                        <X size={18} />
+                      <button className="p-2 rounded-lg text-[#5A5A5A] hover:bg-[#FAF9F7] hover:text-[#2C2C2C] transition-colors">
+                        <X size={20} />
                       </button>
                     </SheetClose>
                   </div>
 
                   {/* Nav Links */}
-                  <nav className="flex-1 px-5 py-6 space-y-1">
+                  <nav className="flex-1 px-4 py-6 space-y-1 bg-white">
                     {navLinks.map((link) => (
                       <Link
                         key={link.href}
                         href={link.href}
-                        className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                        className={`flex items-center gap-3 px-5 py-4 rounded-xl text-base font-medium transition-all duration-200 ${
                           isActive(link.href)
-                            ? "text-[#D4AF37] bg-[#FAF9F7]"
+                            ? "text-[#D4AF37] bg-[#FAF9F7] border border-[#D4AF37]/30"
                             : "text-[#2C2C2C] hover:text-[#D4AF37] hover:bg-[#FAF9F7]"
                         }`}
                         onClick={() => setOpen(false)}
                       >
+                        {isActive(link.href) && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] shrink-0" />
+                        )}
                         {link.name}
                       </Link>
                     ))}
                   </nav>
 
                   {/* CTA Full-Width */}
-                  <div className="px-5 py-5 border-t border-[#E8E6E0]">
+                  <div className="px-4 py-5 border-t border-[#E8E6E0] bg-white">
                     <Link
                       href="/contact"
-                      className="block w-full text-center px-5 py-3 bg-[#D4AF37] hover:bg-[#B8860B] text-white font-semibold rounded-lg transition-all duration-300 text-sm"
+                      className="flex items-center justify-center w-full px-5 py-4 bg-[#D4AF37] hover:bg-[#B8860B] text-white font-bold rounded-xl transition-all duration-300 text-base shadow-md"
                       onClick={() => setOpen(false)}
                     >
                       Book Consultation
