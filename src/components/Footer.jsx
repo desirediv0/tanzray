@@ -1,112 +1,91 @@
-import Link from 'next/link';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import Link from "next/link";
+import { Phone, Mail, MapPin, Scale } from "lucide-react";
+import Image from "next/image";
+
+const quickLinks = [
+  { label: "Home",    href: "/" },
+  { label: "About",   href: "/about" },
+  { label: "Contact", href: "/contact" },
+];
+
+const contactItems = [
+  { icon: Phone,  value: "+91 9800000037",        href: "tel:+919800000037" },
+  { icon: Mail,   value: "advocate.mkaur@gmail.com", href: "mailto:advocate.mkaur@gmail.com" },
+];
 
 export default function Footer() {
-    const quickLinks = [
-        { label: 'Home', href: '/' },
-        { label: 'About', href: '/about' },
-        { label: 'Contact', href: '/contact' },
-    ];
+  return (
+    <footer className="bg-[#F9F8F6] border-t-2 border-[#D4AF37]">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-    const practiceAreas = [
-        { label: 'Matrimonial', href: '/matrimonial' },
-        { label: 'Criminal Law', href: '/criminal' },
-        { label: 'Contracts', href: '/contract' },
-        { label: 'Mediation', href: '/mediation' },
-        { label: 'Intellectual Property', href: '/intellectual-property' },
-    ];
+          {/* Column 1: About Firm */}
+          <div className="flex  flex-col items-start gap-2">
+           <Link href="/" className="flex items-center gap-2">
+           <Image src="/logo.png" alt="Logo" width={80} height={80} />
+           </Link>
+            <p className="text-[9px] text-[#5A5A5A] font-semibold tracking-[0.2em] uppercase mb-3">
+              Navigate the Legal Mosaic
+            </p>
+            <p className="text-sm text-[#5A5A5A] leading-relaxed">
+              Premium legal counsel for individuals and businesses across Delhi — District and High Court matters handled with expertise and integrity.
+            </p>
+          </div>
 
-    return (
-        <footer className="bg-[#F9F8F6] border-t-2 border-[#D4AF37] mt-16 shadow-lg">
-            <div className="max-w-7xl mx-auto px-6 md:px-12 py-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {/* Brand Section */}
-                    <div>
-                        <div className="mb-6">
-                            <h3 className="text-2xl font-bold">
-                                <span className="text-[#D4AF37]">TANZRAY</span>
-                                <span className="text-[#2C2C2C]"> LEGAL</span>
-                            </h3>
-                            <p className="text-xs text-[#5A5A5A] font-semibold mt-1">Navigate the Legal Mosaic</p>
-                        </div>
-                        <p className="text-sm text-[#5A5A5A] leading-relaxed">
-                            Premium legal counsel for individuals and businesses across Delhi and High Court matters.
-                        </p>
-                    </div>
+          {/* Column 2: Quick Links */}
+          <div>
+            <h4 className="text-sm font-bold text-[#D4AF37] uppercase tracking-widest mb-5">
+              Quick Links
+            </h4>
+            <ul className="space-y-2.5">
+              {quickLinks.map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-sm text-[#5A5A5A] hover:text-[#D4AF37] font-medium transition-colors duration-300 flex items-center gap-2 group"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-[#D4AF37]/40 group-hover:bg-[#D4AF37] transition-colors" />
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-                    {/* Quick Links */}
-                    <div>
-                        <h4 className="font-bold  text-lg mb-6 text-[#D4AF37]">Quick Links</h4>
-                        <ul className="space-y-3">
-                            {quickLinks.map((link) => (
-                                <li key={link.href}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-[#5A5A5A] hover:text-[#D4AF37] font-medium transition-colors duration-300"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Practice Areas */}
-                    <div>
-                        <h4 className="font-bold  text-lg mb-6 text-[#D4AF37]">Practice Areas</h4>
-                        <ul className="space-y-3">
-                            {practiceAreas.map((link) => (
-                                <li key={link.href}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-[#5A5A5A] hover:text-[#D4AF37] font-medium transition-colors duration-300"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Contact Information */}
-                    <div>
-                        <h4 className="font-bold  text-lg mb-6 text-[#D4AF37]">Contact</h4>
-                        <div className="space-y-4">
-                            <a
-                                href="tel:+919800000037"
-                                className="flex items-start gap-3 text-[#5A5A5A] hover:text-[#D4AF37] transition-colors group"
-                            >
-                                <Phone size={18} className="text-[#D4AF37] shrink-0 mt-1 group-hover:scale-110 transition-transform" />
-                                <span className="font-medium">+91 9800000037</span>
-                            </a>
-                            <a
-                                href="mailto:advocate.mkaur@gmail.com"
-                                className="flex items-start gap-3 text-[#5A5A5A] hover:text-[#D4AF37] transition-colors group"
-                            >
-                                <Mail size={18} className="text-[#D4AF37] shrink-0 mt-1 group-hover:scale-110 transition-transform" />
-                                <span className="font-medium break-all">advocate.mkaur@gmail.com</span>
-                            </a>
-                            <div className="flex items-start gap-3 text-[#5A5A5A]">
-                                <MapPin size={18} className="text-[#D4AF37] shrink-0 mt-1" />
-                                <div className="text-sm">
-                                    <p className="font-medium">Flat No. 4, GF, PKT 4,</p>
-                                    <p>Sunview Apartment, Sector 11,</p>
-                                    <p>Dwarka, New Delhi – 110075</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Divider */}
-                <div className="gold-divider my-8"></div>
-
-                {/* Bottom Bar */}
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[#5A5A5A]">
-                    <p>© {new Date().getFullYear()} TANZRAY LEGAL ATTORNEYS. All rights reserved.</p>
-                    <p className="italic text-[#8A8A8A]">Navigate the Legal Mosaic</p>
-                </div>
+          {/* Column 3: Contact Info */}
+          <div>
+            <h4 className="text-sm font-bold text-[#D4AF37] uppercase tracking-widest mb-5">
+              Contact
+            </h4>
+            <div className="space-y-3">
+              {contactItems.map(({ icon: Icon, value, href }) => (
+                <a
+                  key={href}
+                  href={href}
+                  className="flex items-start gap-3 text-[#5A5A5A] hover:text-[#D4AF37] transition-colors group"
+                >
+                  <Icon size={16} className="text-[#D4AF37] shrink-0 mt-0.5" />
+                  <span className="text-sm font-medium break-all">{value}</span>
+                </a>
+              ))}
+              <div className="flex items-start gap-3 text-[#5A5A5A]">
+                <MapPin size={16} className="text-[#D4AF37] shrink-0 mt-0.5" />
+                <p className="text-sm leading-relaxed">
+                  Flat No. 4, GF, PKT 4, Sunview Apartment,<br />
+                  Sector 11, Dwarka, New Delhi – 110075
+                </p>
+              </div>
             </div>
-        </footer>
-    );
+          </div>
+
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-8 pt-6 border-t border-[#E8E6E0] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#8A8A8A]">
+          <p>© {new Date().getFullYear()} TANZRAY LEGAL ATTORNEYS. All rights reserved.</p>
+          <p className="italic">Navigate the Legal Mosaic</p>
+        </div>
+      </div>
+    </footer>
+  );
 }
