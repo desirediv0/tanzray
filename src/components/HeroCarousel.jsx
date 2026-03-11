@@ -85,7 +85,7 @@ export default function HeroCarousel() {
         <div className="max-w-5xl mx-auto px-6 md:px-12 text-center">
           <div key={selectedIndex} className="animate-fade-in">
             {/* Eyebrow Label */}
-            <p className="text-xs md:text-sm tracking-[0.3em] uppercase text-[#D4AF37] font-semibold mb-4 opacity-90">
+            <p className="text-md md:text-lg tracking-[0.3em] uppercase text-[#D4AF37] font-semibold mb-4 opacity-90">
               Tanzray Legal Attorneys
             </p>
             {/* Headline */}

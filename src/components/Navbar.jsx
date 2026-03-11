@@ -47,12 +47,12 @@ export default function Navbar() {
           : "bg-white border-b border-[#D4AF37]/20"
         }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 py-2">
         <div className="flex items-center h-20">
 
           {/* ── LEFT: Logo ── */}
           <Link href="/" className="flex-shrink-0 flex items-center gap-2.5 group">
-          <Image src="/logo.png" alt="Logo" width={60} height={60} />
+          <Image src="/logo.png" alt="Logo" width={80} height={80} />
           </Link>
 
           {/* ── CENTER: Desktop Nav ── */}
