@@ -23,6 +23,7 @@ export default function Footer() {
           <div className="flex  flex-col items-start gap-2">
            <Link href="/" className="flex items-center gap-2">
            <Image src="/logo.png" alt="Logo" width={80} height={80} />
+           <h1 className="text-xl font-bold text-[#D4AF37] font-serif">TANZRAY</h1>
            </Link>
             <p className="text-[9px] text-[#5A5A5A] font-semibold tracking-[0.2em] uppercase mb-3">
               Navigate the Legal Mosaic

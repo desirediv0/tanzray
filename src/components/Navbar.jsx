@@ -52,7 +52,8 @@ export default function Navbar() {
 
           {/* ── LEFT: Logo ── */}
           <Link href="/" className="flex-shrink-0 flex items-center gap-2.5 group">
-          <Image src="/logo.png" alt="Logo" width={80} height={80} />
+          <Image src="/logo.png" alt="Logo" width={60} height={60} />
+          <h1 className="text-xl font-bold text-[#D4AF37] font-serif">TANZRAY</h1>
           </Link>
 
           {/* ── CENTER: Desktop Nav ── */}

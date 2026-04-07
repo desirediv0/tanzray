@@ -1,21 +1,6 @@
-/**
- * PracticePageTemplate — shared layout for all practice area pages.
- *
- * Props:
- *  @param {React.ElementType} icon       - lucide icon for the page header
- *  @param {string}  title                - e.g. "Matrimonial Law"
- *  @param {string}  subtitle             - short tagline
- *  @param {string}  overview             - opening paragraph
- *  @param {string[]} services            - list of services offered
- *  @param {{ title, points }[]} expertise - expertise grid items
- *  @param {{ step, title, desc }[]} process - 4-step process cards
- *  @param {{ title, desc }[]} whyUs      - why choose us grid items
- *  @param {{ court, detail, desc, bullets }[]} courts - court representation
- *  @param {string}  ctaHeading           - CTA section headline
- *  @param {string}  ctaSub               - CTA subtitle
- */
 
-import { CheckCircle2, Gavel, Scale } from "lucide-react";
+
+import { CheckCircle2, Gavel } from "lucide-react";
 import Container    from "@/components/ui/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
 import PremiumCard  from "@/components/ui/PremiumCard";
@@ -31,6 +16,7 @@ export default function PracticePageTemplate({
   process,
   whyUs,
   courts,
+  categories,
   ctaHeading,
   ctaSub,
 }) {
@@ -69,6 +55,30 @@ export default function PracticePageTemplate({
           </div>
         </Container>
       </section>
+
+      {/* ── Categories Grid (Optional rich cards) ── */}
+      {categories?.length > 0 && (
+        <section className="py-12 md:py-14 bg-[#F9F8F6]">
+          <Container>
+            <SectionHeader eyebrow="Portfolios" heading={`${title} Categories`} />
+            <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+              {categories.map(({ title: cTitle, desc, icon: CategoryIcon }) => (
+                <PremiumCard key={cTitle} variant="center" className="flex flex-col items-center !p-12 group shadow-sm hover:shadow-xl transition-all duration-500 border-[#E8E6E0] hover:border-[#D4AF37]/50 rounded-3xl">
+                  {CategoryIcon && (
+                    <div className="w-24 h-24 rounded-3xl bg-[#D4AF37]/5 flex items-center justify-center mb-10 group-hover:bg-[#D4AF37]/10 transition-colors duration-500">
+                      <CategoryIcon size={48} className="text-[#D4AF37]" strokeWidth={1} />
+                    </div>
+                  )}
+                  <h3 className="text-2xl font-bold text-[#2C2C2C] mb-6">{cTitle}</h3>
+                  <p className="text-[#5A5A5A] text-sm md:text-base leading-relaxed text-center">
+                    {desc}
+                  </p>
+                </PremiumCard>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* ── Expertise Grid (if provided) ── */}
       {expertise?.length > 0 && (
@@ -127,11 +137,12 @@ export default function PracticePageTemplate({
       </section>
 
       {/* ── Court Representation ── */}
+      {courts?.length > 0 && (
       <section className={`py-12 md:py-14 ${expertise?.length > 0 ? "bg-white" : "bg-[#F9F8F6]"}`}>
         <Container>
           <SectionHeader eyebrow="Representation" heading="Court Representation" />
           <div className="grid md:grid-cols-2 gap-6">
-            {courts.map(({ court, detail, desc, bullets, icon: CourtIcon = Gavel }) => (
+            {courts?.map(({ court, detail, desc, bullets, icon: CourtIcon = Gavel }) => (
               <PremiumCard key={court}>
                 <div className="flex items-center gap-3 mb-3">
                   <CourtIcon size={20} className="text-[#D4AF37] shrink-0" />
@@ -151,6 +162,7 @@ export default function PracticePageTemplate({
           </div>
         </Container>
       </section>
+      )}
 
       {/* ── CTA ── */}
       <section className="py-12 md:py-14 bg-gradient-to-br from-[#1a1a1a] via-[#2C2C2C] to-[#3D3D3D]">
