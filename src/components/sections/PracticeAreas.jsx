@@ -12,7 +12,6 @@ const areas = [
     icon: Heart,
     img: "https://images.unsplash.com/photo-1606800052052-a08af7148866?w=600&q=80&auto=format&fit=crop",
     alt: "Matrimonial law representation",
-    clickable: false,
   },
   {
     title: "Criminal Law",
@@ -21,7 +20,6 @@ const areas = [
     icon: Scale,
     img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80&auto=format&fit=crop",
     alt: "Criminal law courtroom",
-    clickable: false,
   },
   {
     title: "Contract Law",
@@ -30,7 +28,6 @@ const areas = [
     icon: FileText,
     img: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80&auto=format&fit=crop",
     alt: "Contract law documents",
-    clickable: true,
   },
   {
     title: "Mediation Services",
@@ -39,7 +36,6 @@ const areas = [
     icon: Handshake,
     img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&q=80&auto=format&fit=crop",
     alt: "Mediation and dispute resolution",
-    clickable: false,
   },
   {
     title: "Intellectual Property",
@@ -48,7 +44,6 @@ const areas = [
     icon: Lock,
     img: "https://img.freepik.com/free-photo/still-life-world-intellectual-property-day_23-2151325852.jpg?t=st=1772429202~exp=1772432802~hmac=2dbb3c105b9408c90277aead76eccb5d3697446d72e119545979bfa8f4263d08&w=1480",
     alt: "Intellectual property protection",
-    clickable: true,
   },
 ];
 
@@ -62,21 +57,23 @@ export default function WhatWeDo() {
           sub="Comprehensive legal services across a range of specialised practice areas — all under one roof."
         />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {areas.map(({ title, desc, href, icon: Icon, img, alt, clickable }) => {
-            const CardBody = (
+          {areas.map(({ title, desc, href, icon: Icon, img, alt }) => {
+            const isClickable = title === "Contract Law" || title === "Intellectual Property";
+
+            const card = (
               <PremiumCard 
-                hoverable={clickable}
-                className={`h-full flex flex-col p-0 overflow-hidden ${!clickable ? 'cursor-default border-[#E8E6E0] shadow-sm' : ''}`}
+                hoverable={isClickable}
+                className={`h-full flex flex-col p-0 overflow-hidden ${!isClickable ? 'cursor-default border-[#E8E6E0] shadow-sm pointer-events-none' : 'group cursor-pointer'}`}
               >
                 {/* Card Image */}
                 <div className="relative h-44 overflow-hidden">
                   <img
                     src={img}
                     alt={alt}
-                    className={`w-full h-full object-cover transition-transform duration-500 ${clickable ? 'group-hover:scale-105' : ''}`}
+                    className={`w-full h-full object-cover transition-transform duration-500 ${isClickable ? 'group-hover:scale-105' : ''}`}
                   />
                   {/* Gold overlay on hover */}
-                  {clickable && (
+                  {isClickable && (
                     <div className="absolute inset-0 bg-[#D4AF37]/0 group-hover:bg-[#D4AF37]/10 transition-all duration-300" />
                   )}
                   {/* Icon badge */}
@@ -87,12 +84,12 @@ export default function WhatWeDo() {
 
                 {/* Card Content */}
                 <div className="flex flex-col flex-1 p-5">
-                  <h3 className={`text-base font-bold text-[#2C2C2C] mb-2 transition-colors duration-300 ${clickable ? 'group-hover:text-[#D4AF37]' : ''}`}>
+                  <h3 className={`text-base font-bold text-[#2C2C2C] mb-2 transition-colors duration-300 ${isClickable ? 'group-hover:text-[#D4AF37]' : ''}`}>
                     {title}
                   </h3>
                   <p className="text-[#5A5A5A] text-sm leading-relaxed flex-1">{desc}</p>
                   
-                  {clickable && (
+                  {isClickable && (
                     <div className="flex items-center gap-1.5 text-[#D4AF37] font-semibold text-sm mt-4">
                       Learn More
                       <ArrowRight
@@ -105,13 +102,13 @@ export default function WhatWeDo() {
               </PremiumCard>
             );
 
-            return clickable ? (
-              <Link key={href} href={href} className="group block h-full">
-                {CardBody}
+            return isClickable ? (
+              <Link key={href} href={href} className="block h-full no-underline">
+                {card}
               </Link>
             ) : (
               <div key={title} className="block h-full">
-                {CardBody}
+                {card}
               </div>
             );
           })}
